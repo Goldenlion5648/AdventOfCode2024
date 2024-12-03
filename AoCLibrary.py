@@ -682,6 +682,12 @@ def show_board(board, actual_symbol=True, filler='.', lo_y=None, lo_x=None, max_
 
 print_board = pprint
 
+def to_num_board(temp_board):
+    if type(temp_board) == str:
+        temp_board = temp_board.split("\n")
+    temp_board = [nums(line) for line in temp_board]
+    return temp_board
+
 def read_board(a, start_regex=r"S", goal_regex=r"@", wall_regex=r"#", syms=False):
     '''returns board : dictionary of (y, x) -> (bool isWall)
     start_y : (y)
