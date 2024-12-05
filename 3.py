@@ -4,11 +4,11 @@ with open("input3.txt") as f:
 
 def main(a : str, part2=False):
     a = a.strip()
-    ret = 0
     if not part2:
         parts = re.findall(r"mul\(\d+,\d+\)", a)
         return sum(prod(nums(p)) for p in parts)
 
+    ret = 0
     is_good = True
     keeps = re.findall(r"do\(\)|don't\(\)|mul\(\d+,\d+\)", a)
     for k in keeps:

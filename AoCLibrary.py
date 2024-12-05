@@ -38,12 +38,6 @@ mi = more_itertools
 # more_itertools.
 
 DEBUG = False
-try:
-#     # import networkx as nx
-    from sympy.ntheory.modular import crt
-    chinese = crt
-except:
-    pass
 
 gcf = gcd
 # to_exclude = ["pow"]
@@ -189,6 +183,7 @@ class AdventInput:
     def setup(self, data : str):
         self.lines : list[str] = data.splitlines()
         self.paragraphs = data.split("\n\n")
+        self.sections = self.paragraphs
         self.paras = self.paragraphs
         self.para = self.paragraphs
         if len(self.lines) == 1:
@@ -687,6 +682,8 @@ def to_num_board(temp_board):
         temp_board = temp_board.split("\n")
     temp_board = [nums(line) for line in temp_board]
     return temp_board
+
+num_board = to_num_board
 
 def read_board(a, start_regex=r"S", goal_regex=r"@", wall_regex=r"#", syms=False):
     '''returns board : dictionary of (y, x) -> (bool isWall)
