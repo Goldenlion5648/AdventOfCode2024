@@ -373,10 +373,14 @@ def apply_while(f, a, condition):
 
 reduce_while = apply_while
 
-def to_grid(a, as_dict=False):
+def to_grid(a, as_dict=False, try_ints=True):
     '''returns a 2d list or dict from a string'''
     temp = lmap(list, a.split('\n'))
-    return to_dict(temp) if as_dict else temp
+    if as_dict:
+        return to_dict(temp)
+    if temp[0][0].isnumeric() and try_ints:
+        return [lmap(int, line) for line in temp]
+    return temp
 
 read_grid = to_grid
 grid = to_grid
@@ -416,6 +420,10 @@ def read_dict(a, key_val_delim, entry_delim='\n'):
     ret = {}
     for line in re.split(rf"{entry_delim}", a):
         left, right = line.strip().split(key_val_delim)
+        if left.isnumeric():
+            left = int(left)
+        if right.isnumeric():
+            right = int(right)
         ret[left] = right
     return ret
 
