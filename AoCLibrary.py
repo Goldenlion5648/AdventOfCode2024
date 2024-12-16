@@ -633,6 +633,13 @@ def abseach(t):
     '''returns a new list with the absolute value of each element '''
     return [abs(i) for i in t]
 
+def board_dims(board):
+    '''return y_dim, x_dim'''
+    y_dim = max(board, key=lambda x : x[0])[0] + 1
+    x_dim = max(board, key=lambda x : x[1])[1] + 1
+    return y_dim, x_dim
+    
+
 def show_board(board, actual_symbol=True, filler='.', lo_y=None, lo_x=None, max_y=None, max_x=None, conversions=None, ending='', func=lambda x: x, reversed_=False, show_anyway=False):
     '''Prints a defaultdict that uses (y, x) values for keys
     
